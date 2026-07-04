@@ -93,7 +93,7 @@ Search across:
 ## Technology Stack
 
 * PHP 8.x
-* Laravel 12
+* Laravel 13
 * MySQL
 * Blade
 * Bootstrap
