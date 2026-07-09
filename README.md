@@ -90,10 +90,47 @@ Search across:
 * CSV export
 * PDF export
 
+
+## Testing
+
+The application includes comprehensive Feature Tests using PHPUnit to ensure reliability across authentication, authorization, validation, and multi-tenant data isolation.
+
+### Customer Tests
+
+- Authentication tests
+- Tenant middleware tests
+- Role-based authorization tests
+- Customer CRUD tests
+- Validation tests
+- Multi-tenant data isolation tests
+
+### Lead Tests
+
+- Authentication tests
+- Tenant middleware tests
+- Role-based authorization tests
+- Lead CRUD tests
+- Validation tests
+- Multi-tenant data isolation tests
+
+### Test Coverage
+
+The current test suite verifies:
+
+- Guest access restrictions
+- Tenant selection middleware
+- Role-based permissions (Admin, Manager, Sales, Support)
+- CRUD operations
+- Form validation
+- Database assertions
+- Multi-tenant security
+- Authorization policies
+
+
 ## Technology Stack
 
 * PHP 8.x
-* Laravel 13
+* Laravel 12
 * MySQL
 * Blade
 * Bootstrap
