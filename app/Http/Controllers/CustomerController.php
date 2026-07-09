@@ -42,6 +42,8 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request): RedirectResponse
     {
+        $this->authorize('create', Customer::class);
+
         //
         $validatedData = $request->validated();
         $postData = array_merge($validatedData, [
@@ -80,6 +82,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer): RedirectResponse
     {
         //
+        $this->authorize('update', $customer);
         $request->validated();
         $customer->update($request->all());
         return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');

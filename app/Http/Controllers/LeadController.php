@@ -41,6 +41,7 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request): RedirectResponse
     {
         //
+        $this->authorize('create', Lead::class);
         $validatedData = $request->validated();
         $postData = array_merge($validatedData, [
             'created_by' => Auth::user()->id,
@@ -78,6 +79,7 @@ class LeadController extends Controller
     public function update(StoreLeadRequest $request, Lead $lead): RedirectResponse
     {
         //
+        $this->authorize('update', $lead);
         $oldStatus = $lead->status;//to log status change activity
         $request->validated();
         $lead->update($request->all());

@@ -21,7 +21,7 @@ class LeadPolicy
      */
     public function view(User $user, Lead $lead): bool
     {
-        return true;
+        return $lead->tenant_id == session('tenant_id');
     }
 
     /**
@@ -38,7 +38,8 @@ class LeadPolicy
      */
     public function update(User $user, Lead $lead): bool
     {
-        return in_array($user->current_role, ['Admin','Manager']);
+        return $lead->tenant_id == session('tenant_id')
+        && in_array($user->current_role, ['Admin','Manager']);
     }
 
     /**
@@ -46,7 +47,8 @@ class LeadPolicy
      */
     public function delete(User $user, Lead $lead): bool
     {
-        return in_array($user->current_role, ['Admin','Manager']);
+        return $lead->tenant_id == session('tenant_id')
+        && in_array($user->current_role, ['Admin','Manager']);
     }
 
     /**

@@ -21,7 +21,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer): bool
     {
-        return true;
+        return $customer->tenant_id == session('tenant_id');
     }
 
     /**
@@ -37,7 +37,8 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer): bool
     {
-        return in_array($user->current_role, ['Admin','Manager']);
+        return $customer->tenant_id == session('tenant_id')
+        && in_array($user->current_role, ['Admin', 'Manager']);
     }
 
     /**
@@ -45,7 +46,8 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer): bool
     {
-        return in_array($user->current_role, ['Admin','Manager']);
+        return $customer->tenant_id == session('tenant_id')
+        && in_array($user->current_role, ['Admin', 'Manager']);
     }
 
     /**
@@ -63,4 +65,5 @@ class CustomerPolicy
     {
         return false;
     }
+    
 }
